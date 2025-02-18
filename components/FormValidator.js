@@ -1,6 +1,8 @@
-import { validationConfig } from "../utils/constants.js";
-
 class FormValidator {
-  constuctor() {}
+  constuctor(settings, formElement) {
+    console.log(settings);
+    console.log(formElement);
+  }
 }
+
 export default FormValidator;
