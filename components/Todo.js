@@ -1,5 +1,3 @@
-import { initialTodos } from "../utils/constants.js";
-
 class Todo {
   constructor(data, selector) {
     this._data = data;
