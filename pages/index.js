@@ -14,7 +14,21 @@ const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: () => {},
+  handleFormSubmit: (formValues) => {
+    const name = formValues.name;
+    const dateInput = formValues.date;
+    const id = uuidv4();
+
+    const date = new Date(dateInput);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+
+    const todoData = { name, date, id };
+
+    const todoElement = section._renderer(todoData);
+    section.addItem(todoElement);
+    addTodoPopup.close();
+    newTodoValidator.resetValidation();
+  },
 });
 addTodoPopup.setEventListeners();
 
@@ -41,22 +55,6 @@ addTodoButton.addEventListener("click", () => {
 
 addTodoCloseBtn.addEventListener("click", () => {
   addTodoPopup.close();
-});
-
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
-  const id = uuidv4();
-  newTodoValidator.resetValidation();
-
-  // Create a date object and adjust for timezone
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-  const values = { name, date, id };
-  renderTodo(values);
-  closeModal(addTodoPopupEl);
 });
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
