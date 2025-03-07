@@ -27,7 +27,7 @@ const addTodoPopup = new PopupWithForm({
 
     const todoData = { name, date, id, completed: false };
 
-    const todoElement = section._renderer(todoData);
+    const todoElement = section.renderer(todoData);
     section.addItem(todoElement);
     addTodoPopup.close();
     newTodoValidator.resetValidation();
