@@ -10,7 +10,6 @@ import {
   validationConfig,
   addTodoButton,
   addTodoForm,
-  addTodoCloseBtn,
 } from "../utils/constants.js";
 
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
@@ -27,7 +26,7 @@ const addTodoPopup = new PopupWithForm({
 
     const todoData = { name, date, id, completed: false };
 
-    const todoElement = section._renderer(todoData);
+    const todoElement = generateTodo(todoData);
     section.addItem(todoElement);
     addTodoPopup.close();
     newTodoValidator.resetValidation();
@@ -66,10 +65,6 @@ section.renderItems();
 
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
-});
-
-addTodoCloseBtn.addEventListener("click", () => {
-  addTodoPopup.close();
 });
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
