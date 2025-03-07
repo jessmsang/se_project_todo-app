@@ -27,3 +27,8 @@ export const validationConfig = {
   inputErrorClass: "popup__input_type_error",
   inactiveButtonClass: "button_disabled",
 };
+
+export const addTodoButton = document.querySelector(".button_action_add");
+export const addTodoPopupEl = document.querySelector("#add-todo-popup");
+export const addTodoForm = document.forms["add-todo-form"];
+export const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
